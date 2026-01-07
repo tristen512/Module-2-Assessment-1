@@ -8,39 +8,20 @@
 </head>
 <body>
 
-    <header>
-        <h1>Pine City Zoo</h1>
-        <p>Welcome to our zoo! Click an animal to learn more.</p>
-    </header>
+<header>
+    <h1 class="fade-in">Pine City Zoo</h1>
+    <p class="fade-in">Discover the wonders of wildlife. Click an animal to learn more.</p>
 
-    <div class="animal-list">
-        <div class="animal" onclick="viewAnimal('lion')">
-            <img src="lion.jpg" alt="Lion">
-            <h2>Lion</h2>
-        </div>
+    <div class="top-controls fade-in">
+        <input type="text" id="searchBar" placeholder="Search animals..." onkeyup="searchAnimals()">
 
-        <div class="animal" onclick="viewAnimal('elephant')">
-            <img src="elephant.jpg" alt="Elephant">
-            <h2>Elephant</h2>
-        </div>
-
-        <div class="animal" onclick="viewAnimal('giraffe')">
-            <img src="giraffe.jpg" alt="Giraffe">
-            <h2>Giraffe</h2>
-        </div>
-
-        <div class="animal" onclick="viewAnimal('penguin')">
-            <img src="penguin.jpg" alt="Penguin">
-            <h2>Penguin</h2>
-        </div>
-
-        <div class="animal" onclick="viewAnimal('zebra')">
-            <img src="zebra.jpg" alt="Zebra">
-            <h2>Zebra</h2>
-        </div>
+        <button id="modeToggle" onclick="toggleMode()">🌙 Dark Mode</button>
     </div>
+</header>
 
-    <script src="script.js"></script>
+<div class="animal-list fade-in" id="animalList"></div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
