@@ -1,44 +1,86 @@
+/* BASIC STYLING */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #eef6f7;
+    transition: 0.4s;
+}
+
+.dark-mode {
+    background: #0f1a22;
+    color: white;
 }
 
 header {
     text-align: center;
+    padding: 25px;
     background: #2a6f97;
     color: white;
-    padding: 20px;
 }
 
+.dark-mode header {
+    background: #123347;
+}
+
+/* SEARCH + MODE BUTTON */
+.top-controls {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#searchBar {
+    padding: 10px;
+    width: 220px;
+    border-radius: 8px;
+    border: none;
+}
+
+#modeToggle {
+    padding: 10px 15px;
+    background: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.dark-mode #modeToggle {
+    background: #193c4f;
+    color: white;
+}
+
+/* ANIMAL GRID */
 .animal-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
     padding: 20px;
+    gap: 15px;
 }
 
-.animal {
+.animal-card {
     background: white;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
     cursor: pointer;
     transition: 0.3s;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
-.animal:hover {
+.animal-card:hover {
     transform: scale(1.05);
 }
 
-.animal img {
+.animal-card img {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
+/* DETAIL PAGE */
 .animal-info {
-    padding: 20px;
     text-align: center;
+    padding: 20px;
 }
 
 .animal-info img {
@@ -47,18 +89,29 @@ header {
     border-radius: 10px;
 }
 
+/* BACK BUTTON */
 .back-btn {
     display: block;
-    text-align: center;
     margin: 20px auto;
     width: 150px;
-    padding: 10px;
     background: #2a6f97;
+    padding: 10px;
     color: white;
-    text-decoration: none;
+    text-align: center;
     border-radius: 5px;
+    text-decoration: none;
 }
 
 .back-btn:hover {
     background: #1f5674;
+}
+
+/* ANIMATIONS */
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
