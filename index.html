@@ -66,11 +66,14 @@ nav h1 { font-size:22px; margin:0; }
 
 /* ===== POPUP ===== */
 #overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); z-index:10; }
-#detailsBox { display:none; background:white; padding:25px; border-radius:15px; width:90%; max-width:500px; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.8); box-shadow:0 10px 25px rgba(0,0,0,0.3); animation:slideUp 0.5s forwards; z-index:20; }
+#detailsBox { display:none; background:white; padding:25px; border-radius:15px; width:90%; max-width:600px; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.8); box-shadow:0 10px 25px rgba(0,0,0,0.3); animation:slideUp 0.5s forwards; z-index:20; overflow-y:auto; max-height:80vh;}
 .dark-mode #detailsBox { background:#13232f; }
-#detailsBox img { width:100%; border-radius:12px; margin-bottom:10px; }
+#detailsBox img { width:100%; border-radius:12px; margin-bottom:15px; }
 .close-btn { margin-top:10px; padding:8px 14px; background:#31753e; color:white; border:none; border-radius:10px; cursor:pointer; }
 .close-btn:hover {background:#24532a;}
+h2 {margin-top:0;}
+p {margin-bottom:10px; line-height:1.5;}
+ul {padding-left:20px;}
 @keyframes slideUp { to { transform: translate(-50%, -50%) scale(1); opacity:1; } }
 </style>
 </head>
@@ -98,20 +101,89 @@ nav h1 { font-size:22px; margin:0; }
 <img id="detailsImg">
 <h2 id="detailsTitle"></h2>
 <p id="detailsDesc"></p>
-<p id="detailsMore"></p>
+<h3>Habitat:</h3>
+<p id="detailsHabitat"></p>
+<h3>Diet:</h3>
+<p id="detailsDiet"></p>
+<h3>Lifespan:</h3>
+<p id="detailsLifespan"></p>
+<h3>Behavior & Facts:</h3>
+<ul id="detailsBehavior"></ul>
 <button class="close-btn" onclick="closeDetails()">Close</button>
 </div>
 
 <script>
 // ===== ANIMALS DATA =====
 const animals = [
-{name:"Lion", img:"lion.jpg", desc:"King of the jungle.", more:"Lives in prides and can roar up to 8km away."},
-{name:"Elephant", img:"elephant.jpg", desc:"Largest land mammal.", more:"Has great memory, uses trunk for many tasks."},
-{name:"Giraffe", img:"giraffe.jpg", desc:"Tallest animal.", more:"Sleeps ~30 mins/day, long neck for leaves."},
-{name:"Zebra", img:"zebra.jpg", desc:"Striped beauty.", more:"Each zebra has unique stripes."},
-{name:"Penguin", img:"penguin.jpg", desc:"Flightless swimmer.", more:"Excellent swimmer, mates for life."},
-{name:"Tiger", img:"tiger.jpg", desc:"Powerful predator.", more:"Stripes exist on skin too."},
-{name:"Monkey", img:"monkey.jpg", desc:"Playful climber.", more:"Can understand simple tasks and communicate."}
+{name:"Lion", img:"lion.jpg", desc:"King of the jungle.", 
+habitat:"Savannahs, grasslands, and open woodlands in Africa.", 
+diet:"Carnivore – mainly antelopes, zebras, and other large prey.", 
+lifespan:"10–14 years in the wild, up to 20 in captivity.", 
+behavior:["Lives in prides consisting of females, offspring, and a few males.",
+"Can roar up to 8 km away.",
+"Social animals with complex interactions.",
+"Males defend territory."],
+more:"Known for hunting in coordinated groups and resting under trees in the heat."},
+
+{name:"Elephant", img:"elephant.jpg", desc:"Largest land mammal.", 
+habitat:"Grasslands, forests, and savannahs across Africa and Asia.", 
+diet:"Herbivore – grasses, fruits, bark, and roots.", 
+lifespan:"60–70 years.", 
+behavior:["Highly intelligent and social animals.",
+"Use trunks for drinking, feeding, and communication.",
+"Females live in matriarchal herds.",
+"Can communicate with low-frequency sounds."],
+more:"Elephants are excellent at problem solving and have strong memory skills."},
+
+{name:"Giraffe", img:"giraffe.jpg", desc:"Tallest animal.", 
+habitat:"Savannahs and open woodlands in Africa.", 
+diet:"Herbivore – leaves, especially from acacia trees.", 
+lifespan:"25 years in the wild.", 
+behavior:["Sleep only ~30 mins/day, usually standing.",
+"Have unique coat patterns for identification.",
+"Use long tongues to grab leaves.",
+"Can run up to 60 km/h."],
+more:"Giraffes are gentle browsers and have excellent vision for spotting predators."},
+
+{name:"Zebra", img:"zebra.jpg", desc:"Striped beauty.", 
+habitat:"Grasslands and savannahs in Africa.", 
+diet:"Herbivore – grasses, shoots, leaves.", 
+lifespan:"20–25 years.", 
+behavior:["Each zebra has unique stripes.",
+"Live in herds for protection against predators.",
+"Communicate through brays and facial expressions.",
+"Strong swimmers when needed."],
+more:"Zebras often migrate in large groups for safety and food availability."},
+
+{name:"Penguin", img:"penguin.jpg", desc:"Flightless swimmer.", 
+habitat:"Coastal areas, islands, and Antarctica.", 
+diet:"Carnivore – mainly fish, squid, and krill.", 
+lifespan:"15–20 years.", 
+behavior:["Excellent swimmers, using flippers for propulsion.",
+"Mates for life and shares parenting duties.",
+"Can withstand extremely cold temperatures.",
+"Communicate through calls and body language."],
+more:"Penguins huddle together to conserve heat and avoid predators."},
+
+{name:"Tiger", img:"tiger.jpg", desc:"Powerful predator.", 
+habitat:"Tropical forests, grasslands, and wetlands in Asia.", 
+diet:"Carnivore – deer, wild boar, and other medium-large prey.", 
+lifespan:"10–15 years in the wild.", 
+behavior:["Solitary hunters with excellent stealth and strength.",
+"Stripes help camouflage in forests.",
+"Strong swimmers and climbers.",
+"Communicate via scent markings and roars."],
+more:"Tigers are apex predators, crucial for ecosystem balance."},
+
+{name:"Monkey", img:"monkey.jpg", desc:"Playful climber.", 
+habitat:"Tropical rainforests and savannahs.", 
+diet:"Omnivore – fruits, seeds, insects, small animals.", 
+lifespan:"15–20 years.", 
+behavior:["Highly social, live in troops.",
+"Use tools and problem-solving skills.",
+"Can communicate with gestures and sounds.",
+"Active during the day, sleep in trees at night."],
+more:"Monkeys are intelligent and curious, often interacting with their environment."}
 ];
 
 // ===== LOAD CARDS =====
@@ -138,10 +210,24 @@ function showDetails(a){
 document.getElementById("detailsImg").src=a.img;
 document.getElementById("detailsTitle").textContent=a.name;
 document.getElementById("detailsDesc").textContent=a.desc;
+document.getElementById("detailsHabitat").textContent=a.habitat;
+document.getElementById("detailsDiet").textContent=a.diet;
+document.getElementById("detailsLifespan").textContent=a.lifespan;
+
+// Populate behavior list
+const ul = document.getElementById("detailsBehavior");
+ul.innerHTML = "";
+a.behavior.forEach(b => {
+let li = document.createElement("li");
+li.textContent = b;
+ul.appendChild(li);
+});
+
 document.getElementById("detailsMore").textContent=a.more;
 document.getElementById("overlay").style.display="block";
 document.getElementById("detailsBox").style.display="block";
 }
+
 function closeDetails(){
 document.getElementById("overlay").style.display="none";
 document.getElementById("detailsBox").style.display="none";
