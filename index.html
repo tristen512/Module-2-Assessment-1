@@ -30,8 +30,17 @@ nav {
     z-index:20;
 }
 nav h1 { font-size:22px; margin:0; }
-.dark-btn { background:white; border:none; padding:6px 14px; border-radius:20px; cursor:pointer; font-weight:600; transition:0.3s; }
-.dark-btn:hover { background:#ddd; }
+.dark-btn, .music-btn {
+    background:white;
+    border:none;
+    padding:6px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+    margin-left:8px;
+}
+.dark-btn:hover, .music-btn:hover { background:#ddd; }
 
 /* ===== SEARCH ===== */
 .search-box { width:85%; margin:20px auto; }
@@ -59,22 +68,44 @@ nav h1 { font-size:22px; margin:0; }
     text-align:center;
     transition:0.3s;
     cursor:pointer;
+    animation:fadeIn 0.8s ease;
 }
 .dark-mode .animal-card { background:#13232f; }
-.animal-card:hover { transform:translateY(-5px); box-shadow:0 6px 18px rgba(0,0,0,0.2); }
+.animal-card:hover { transform:translateY(-5px) scale(1.02); box-shadow:0 6px 18px rgba(0,0,0,0.25); }
 .animal-card img { width:100%; height:160px; object-fit:cover; border-radius:12px; margin-bottom:10px; }
 
 /* ===== POPUP ===== */
-#overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(4px); z-index:10; }
-#detailsBox { display:none; background:white; padding:25px; border-radius:15px; width:90%; max-width:600px; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.8); box-shadow:0 10px 25px rgba(0,0,0,0.3); animation:slideUp 0.5s forwards; z-index:20; overflow-y:auto; max-height:80vh;}
-.dark-mode #detailsBox { background:#13232f; }
-#detailsBox img { width:100%; border-radius:12px; margin-bottom:15px; }
-.close-btn { margin-top:10px; padding:8px 14px; background:#31753e; color:white; border:none; border-radius:10px; cursor:pointer; }
-.close-btn:hover {background:#24532a;}
-h2 {margin-top:0;}
-p {margin-bottom:10px; line-height:1.5;}
-ul {padding-left:20px;}
-@keyframes slideUp { to { transform: translate(-50%, -50%) scale(1); opacity:1; } }
+#overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(5px); z-index:10; }
+#detailsBox {
+    display:none;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    width:90%;
+    max-width:650px;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.7);
+    box-shadow:0 15px 30px rgba(0,0,0,0.3);
+    animation:slideUp 0.5s forwards;
+    z-index:20;
+    overflow-y:auto;
+    max-height:80vh;
+}
+.dark-mode #detailsBox { background:#13232f; color:white; }
+#detailsBox img { width:100%; border-radius:12px; margin-bottom:15px; transition:0.5s; }
+h2 { margin-top:0; }
+p { margin-bottom:10px; line-height:1.5; }
+ul { padding-left:20px; margin-bottom:10px; }
+.close-btn { margin-top:10px; padding:10px 16px; background:#31753e; color:white; border:none; border-radius:12px; cursor:pointer; transition:0.3s; }
+.close-btn:hover { background:#24532a; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+@keyframes slideUp { to{ transform: translate(-50%, -50%) scale(1); opacity:1; } }
+
+/* ===== SCROLLBAR ===== */
+#detailsBox::-webkit-scrollbar { width:8px; }
+#detailsBox::-webkit-scrollbar-thumb { background:#4faf60; border-radius:4px; }
 </style>
 </head>
 
@@ -83,7 +114,10 @@ ul {padding-left:20px;}
 <!-- NAVBAR -->
 <nav>
 <h1>Pine City Zoo</h1>
+<div>
 <button class="dark-btn" onclick="document.body.classList.toggle('dark-mode')">Dark Mode</button>
+<button class="music-btn" id="musicBtn">Play Music</button>
+</div>
 </nav>
 
 <!-- SEARCH -->
@@ -109,8 +143,14 @@ ul {padding-left:20px;}
 <p id="detailsLifespan"></p>
 <h3>Behavior & Facts:</h3>
 <ul id="detailsBehavior"></ul>
+<p id="detailsMore"></p>
 <button class="close-btn" onclick="closeDetails()">Close</button>
 </div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+<source src="zoo-music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 // ===== ANIMALS DATA =====
@@ -226,12 +266,21 @@ ul.appendChild(li);
 document.getElementById("detailsMore").textContent=a.more;
 document.getElementById("overlay").style.display="block";
 document.getElementById("detailsBox").style.display="block";
+document.getElementById("detailsBox").scrollTop = 0; // scroll to top
 }
 
 function closeDetails(){
 document.getElementById("overlay").style.display="none";
 document.getElementById("detailsBox").style.display="none";
 }
+
+// ===== MUSIC CONTROL =====
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+musicBtn.onclick = () => {
+if(music.paused){ music.play(); musicBtn.textContent="Pause Music"; }
+else{ music.pause(); musicBtn.textContent="Play Music"; }
+};
 </script>
 
 </body>
