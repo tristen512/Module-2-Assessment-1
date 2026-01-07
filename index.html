@@ -9,103 +9,115 @@
 /* ===== GLOBAL ===== */
 body {
     margin:0;
-    font-family:"Poppins",Arial,sans-serif;
-    background:#f5f7fa;
-    color:#333;
-    transition:0.3s;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(to bottom right, #f9f9f9, #e6f0ea);
+    color:#222;
+    transition:0.4s;
 }
-.dark-mode { background:#111; color:white; }
+.dark-mode { background:#0a0a0a; color:#eee; }
 
 /* ===== NAVBAR ===== */
 nav {
-    background: linear-gradient(135deg,#4faf60,#31753e);
+    background: linear-gradient(135deg,#6fbf73,#2d593a);
     color:white;
-    padding:15px 20px;
+    padding:20px 30px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    box-shadow:0 6px 20px rgba(0,0,0,0.3);
     position: sticky;
     top:0;
     z-index:20;
+    border-bottom: 2px solid gold;
 }
-nav h1 { font-size:22px; margin:0; }
-.dark-btn, .music-btn {
-    background:white;
-    border:none;
-    padding:6px 14px;
-    border-radius:20px;
-    cursor:pointer;
-    font-weight:600;
-    transition:0.3s;
-    margin-left:8px;
+nav h1 { font-size:28px; letter-spacing:1px; margin:0; text-shadow: 0 2px 6px rgba(0,0,0,0.3);}
+.dark-btn {
+    background:gold; color:#222;
+    border:none; padding:8px 16px;
+    border-radius:25px;
+    font-weight:bold; cursor:pointer;
+    transition:0.3s; box-shadow:0 3px 10px rgba(0,0,0,0.2);
 }
-.dark-btn:hover, .music-btn:hover { background:#ddd; }
+.dark-btn:hover { background:#ffd700; transform:scale(1.05); }
 
 /* ===== SEARCH ===== */
-.search-box { width:85%; margin:20px auto; }
+.search-box { width:80%; margin:25px auto; }
 .search-box input {
     width:100%;
-    padding:12px;
-    border-radius:8px;
-    border:2px solid #4faf60;
-    font-size:16px;
+    padding:14px;
+    border-radius:25px;
+    border:2px solid #6fbf73;
+    font-size:17px;
     transition:0.3s;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 .search-box input:focus {
-    border-color:#31753e;
-    box-shadow:0 0 6px rgba(49,117,62,0.5);
+    border-color:#2d593a;
+    box-shadow:0 0 8px rgba(47, 86, 58,0.6);
 }
-.info-note { text-align:center; font-size:14px; margin-top:-10px; color:#444; font-style:italic; }
+.info-note { text-align:center; font-size:14px; margin-top:-10px; color:#555; font-style:italic; }
 
 /* ===== ANIMAL GRID ===== */
-.animal-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; padding:20px; }
-.animal-card {
-    background:white;
-    padding:15px;
-    border-radius:15px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.12);
-    text-align:center;
-    transition:0.3s;
-    cursor:pointer;
-    animation:fadeIn 0.8s ease;
+.animal-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+    padding:25px;
 }
-.dark-mode .animal-card { background:#13232f; }
-.animal-card:hover { transform:translateY(-5px) scale(1.02); box-shadow:0 6px 18px rgba(0,0,0,0.25); }
-.animal-card img { width:100%; height:160px; object-fit:cover; border-radius:12px; margin-bottom:10px; }
+.animal-card {
+    background: rgba(255,255,255,0.9);
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    cursor:pointer;
+    transition:0.4s;
+    backdrop-filter: blur(5px);
+}
+.dark-mode .animal-card { background: rgba(30,30,30,0.9); }
+.animal-card:hover {
+    transform: translateY(-7px) scale(1.03);
+    box-shadow:0 12px 28px rgba(0,0,0,0.3);
+}
+.animal-card img {
+    width:100%; height:180px;
+    object-fit:cover; border-radius:15px;
+    margin-bottom:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.5s;
+}
+.animal-card img:hover { transform: scale(1.05); }
 
 /* ===== POPUP ===== */
-#overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(5px); z-index:10; }
+#overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px); z-index:10; }
 #detailsBox {
     display:none;
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    width:90%;
-    max-width:650px;
-    position:fixed;
-    top:50%;
-    left:50%;
+    background: linear-gradient(to bottom right, #ffffff, #dcebe1);
+    padding:30px;
+    border-radius:25px;
+    width:90%; max-width:700px;
+    position:fixed; top:50%; left:50%;
     transform:translate(-50%,-50%) scale(0.7);
-    box-shadow:0 15px 30px rgba(0,0,0,0.3);
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
     animation:slideUp 0.5s forwards;
     z-index:20;
-    overflow-y:auto;
-    max-height:80vh;
+    overflow-y:auto; max-height:80vh;
 }
-.dark-mode #detailsBox { background:#13232f; color:white; }
-#detailsBox img { width:100%; border-radius:12px; margin-bottom:15px; transition:0.5s; }
-h2 { margin-top:0; }
-p { margin-bottom:10px; line-height:1.5; }
-ul { padding-left:20px; margin-bottom:10px; }
-.close-btn { margin-top:10px; padding:10px 16px; background:#31753e; color:white; border:none; border-radius:12px; cursor:pointer; transition:0.3s; }
-.close-btn:hover { background:#24532a; }
-@keyframes fadeIn { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
-@keyframes slideUp { to{ transform: translate(-50%, -50%) scale(1); opacity:1; } }
+.dark-mode #detailsBox { background: linear-gradient(to bottom right, #111, #1a1a1a); color:#eee; }
+#detailsBox img { width:100%; border-radius:20px; margin-bottom:20px; transition:0.5s; }
+h2 { margin-top:0; font-family:'Playfair Display', serif; font-size:26px; letter-spacing:0.5px; }
+p, ul { margin-bottom:12px; line-height:1.6; font-size:16px; }
+ul { padding-left:22px; }
+.close-btn {
+    margin-top:15px; padding:10px 20px;
+    background:gold; color:#222;
+    border:none; border-radius:25px; cursor:pointer;
+    font-weight:bold; transition:0.3s; box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+.close-btn:hover { background:#ffd700; transform:scale(1.05); }
 
-/* ===== SCROLLBAR ===== */
-#detailsBox::-webkit-scrollbar { width:8px; }
-#detailsBox::-webkit-scrollbar-thumb { background:#4faf60; border-radius:4px; }
+/* ===== ANIMATIONS ===== */
+@keyframes slideUp { to { transform: translate(-50%, -50%) scale(1); opacity:1; } }
 </style>
 </head>
 
@@ -114,10 +126,7 @@ ul { padding-left:20px; margin-bottom:10px; }
 <!-- NAVBAR -->
 <nav>
 <h1>Pine City Zoo</h1>
-<div>
 <button class="dark-btn" onclick="document.body.classList.toggle('dark-mode')">Dark Mode</button>
-<button class="music-btn" id="musicBtn">Play Music</button>
-</div>
 </nav>
 
 <!-- SEARCH -->
@@ -146,11 +155,6 @@ ul { padding-left:20px; margin-bottom:10px; }
 <p id="detailsMore"></p>
 <button class="close-btn" onclick="closeDetails()">Close</button>
 </div>
-
-<!-- BACKGROUND MUSIC -->
-<audio id="bgMusic" loop>
-<source src="zoo-music.mp3" type="audio/mpeg">
-</audio>
 
 <script>
 // ===== ANIMALS DATA =====
@@ -266,21 +270,13 @@ ul.appendChild(li);
 document.getElementById("detailsMore").textContent=a.more;
 document.getElementById("overlay").style.display="block";
 document.getElementById("detailsBox").style.display="block";
-document.getElementById("detailsBox").scrollTop = 0; // scroll to top
+document.getElementById("detailsBox").scrollTop = 0;
 }
 
 function closeDetails(){
 document.getElementById("overlay").style.display="none";
 document.getElementById("detailsBox").style.display="none";
 }
-
-// ===== MUSIC CONTROL =====
-const music = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
-musicBtn.onclick = () => {
-if(music.paused){ music.play(); musicBtn.textContent="Pause Music"; }
-else{ music.pause(); musicBtn.textContent="Play Music"; }
-};
 </script>
 
 </body>
