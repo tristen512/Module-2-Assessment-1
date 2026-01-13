@@ -71,7 +71,7 @@ body{
      text-decoration : none;
      padding-top     : none;
 }
-/*============= MAIN =============*/
+/*================ MAIN ================*/
 #main{
     margin-top: 119px;
     background: url("map-blur.png");
@@ -82,3 +82,26 @@ body{
     padding-top: 1px;
     padding-bottom: 50px;
 }
+
+/*================ INFO BOX ================*/
+a.info-box{
+      text-decoration : none;
+      background      : rgba(255 ,225, 55, .8);
+      width           : 90%;
+      height          : 90px;
+      display         : block;
+      margin          : auto;
+      margin-top      : 12px;
+      padding         : 1px; 
+}
+
+
+
+
+
+
+
+
+
+
+
