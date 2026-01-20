@@ -45,12 +45,10 @@ body{
       text-decoration : none;
       padding-top     : 12px;  
 }
-
 /*============= MAIN-HOME =============*/
 #main-home{
        margin-top: 120px;
 }
-
 /*============= BOTTOM TABS =============*/
 #tabs-bottom{
       position : fixed;
@@ -73,35 +71,13 @@ body{
      text-decoration : none;
      padding-top     : none;
 }
-
 /*================ MAIN ================*/
 #main{
     margin-top: 119px;
     background: url("map-blur.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain; /* keep map contained, not stretched */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0;
+    background-repeat: repeat-y;
+    background-size cover;
 }
-
-/* white square behind image */
-.image-wrapper{
-    background: white;
-    padding: 20px;
-    border-radius: 12px; /* optional, makes it smooth */
-    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* soft shadow */
-}
-
-/* image should fit + not stretch */
-.image-wrapper img{
-    max-width: 100%;
-    height: auto;        /* prevents stretching */
-    display: block;
-}
-
 
 #content{
     padding-top: 1px;
@@ -118,6 +94,7 @@ a.info-box{
       margin          : auto;
       margin-top      : 12px;
       padding         : 1px;
+      /* NEW: Required for positioning child elements absolutely */
       position        : relative;
 }
 
@@ -128,10 +105,13 @@ a.info-box{
 }
 
 .info-box img.right{
+      /* CHANGED: Use absolute positioning instead of float */
       position : absolute;
       right    : 10px;
       top      : 50%;
+      /* CHANGED: Fixed the syntax error */
       height   : 40px;
+      /* Centers the arrow vertically */
       transform: translateY(-50%);
       margin   : 0;
 }
