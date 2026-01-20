@@ -45,10 +45,12 @@ body{
       text-decoration : none;
       padding-top     : 12px;  
 }
+
 /*============= MAIN-HOME =============*/
 #main-home{
        margin-top: 120px;
 }
+
 /*============= BOTTOM TABS =============*/
 #tabs-bottom{
       position : fixed;
@@ -71,12 +73,15 @@ body{
      text-decoration : none;
      padding-top     : none;
 }
+
 /*================ MAIN ================*/
 #main{
     margin-top: 119px;
     background: url("map-blur.png");
-    background-repeat: repeat-y;
-    background-size cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
 }
 
 #content{
@@ -94,7 +99,6 @@ a.info-box{
       margin          : auto;
       margin-top      : 12px;
       padding         : 1px;
-      /* NEW: Required for positioning child elements absolutely */
       position        : relative;
 }
 
@@ -105,13 +109,10 @@ a.info-box{
 }
 
 .info-box img.right{
-      /* CHANGED: Use absolute positioning instead of float */
       position : absolute;
       right    : 10px;
       top      : 50%;
-      /* CHANGED: Fixed the syntax error */
       height   : 40px;
-      /* Centers the arrow vertically */
       transform: translateY(-50%);
       margin   : 0;
 }
