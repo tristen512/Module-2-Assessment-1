@@ -79,10 +79,29 @@ body{
     margin-top: 119px;
     background: url("map-blur.png");
     background-repeat: no-repeat;
-    background-size: cover;
     background-position: center;
-    min-height: 100vh;
+    background-size: contain; /* keep map contained, not stretched */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
 }
+
+/* white square behind image */
+.image-wrapper{
+    background: white;
+    padding: 20px;
+    border-radius: 12px; /* optional, makes it smooth */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* soft shadow */
+}
+
+/* image should fit + not stretch */
+.image-wrapper img{
+    max-width: 100%;
+    height: auto;        /* prevents stretching */
+    display: block;
+}
+
 
 #content{
     padding-top: 1px;
